@@ -22,6 +22,7 @@ foreach ($pages as $page) {
         $nivol = new Volunteer();
         $nivol->nivol = ltrim($volunteer['id'], '0`');
         $nivol->emails = $pegass->fetchEmails($volunteer['coordonnees']);
+        $nivol->enabled = $volunteer['actif'];
         $nivols[$nivol->nivol] = $nivol;
     }
 }
@@ -47,7 +48,7 @@ foreach ($missing as $nivol) {
     /** @var DocumentSnapshot $entity */
     $entity = $store[$nivol];
     $ref->document($entity->id())->update([
-        ['path' => 'enabled', 'value' => true],
+        ['path' => 'enabled', 'value' => false],
     ]);
 }
 
@@ -58,7 +59,7 @@ foreach ($new as $nivol) {
     $volunteer = $nivols[$nivol];
     $ref->newDocument()->set([
         'emails' => $volunteer->emails,
-        'enabled' => true,
+        'enabled' => $volunteer->enabled,
         'nivol' => $volunteer->nivol,
         'subscribed' => true,
         'valid_email_index' => 0,
@@ -77,9 +78,11 @@ foreach (array_intersect(array_keys($nivols), array_keys($store)) as $nivol) {
     $pegassEmails = $volunteer->emails;
     sort($pegassEmails);
 
-    if (json_encode($pegassEmails) !== json_encode($storeEmails)) {
+    if ($volunteer->enabled !== $entity['enabled']
+        || json_encode($pegassEmails) !== json_encode($storeEmails)) {
         $ref->document($entity->id())->update([
             ['path' => 'emails', 'value' => $volunteer->emails],
+            ['path' => 'enabled', 'value' => $volunteer->enabled],
         ]);
     }
 }
