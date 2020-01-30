@@ -15,3 +15,8 @@
 
 # PHP Composer dependencies:
 /vendor/
+
+# Dev env stuff
+service-account.json
+mock.json
+notes.txt
