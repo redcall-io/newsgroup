@@ -1,0 +1,6 @@
+cron:
+  - description: "UL OneTwo Pegass -> Firestore"
+    url: /pegass2firestore.php
+    schedule: every 15 days
+
+

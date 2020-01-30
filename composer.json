@@ -1,0 +1,7 @@
+{
+  "require": {
+    "fabpot/goutte": "^3.2",
+    "google/cloud": "^0.123.0",
+    "symfony/var-dumper": "^5.0"
+  }
+}
