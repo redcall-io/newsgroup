@@ -26,7 +26,7 @@ $nivols = [];
 foreach ($pages as $page) {
     foreach ($page['list'] as $volunteer) {
         $nivol = new Volunteer();
-        $nivol->nivol = ltrim($volunteer['id'], '0`');
+        $nivol->nivol = ltrim($volunteer['id'], '0');
         $nivol->emails = $pegass->fetchEmails($volunteer['coordonnees']);
         $nivol->enabled = $volunteer['actif'];
         $nivols[$nivol->nivol] = $nivol;
