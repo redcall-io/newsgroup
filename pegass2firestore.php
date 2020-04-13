@@ -7,20 +7,43 @@ require __DIR__ . '/Volunteer.php';
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 
+if (!getenv('UL_ID') || !getenv('TOKEN'))
+{
+  throw new \LogicException('UL_ID & TOKEN env var must be defined');
+}
+
+$UL_ID = getenv('UL_ID');
+
 $pegass = new PegassClient();
 $serviceAccount = __DIR__ . '/service-account.json';
-if (file_exists($serviceAccount)) {
+if (file_exists($serviceAccount))
+{
     // Development environment
     putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $serviceAccount);
     $pages = json_decode(file_get_contents('mock.json'), true);
-} elseif ('true' !== $_SERVER['X_APPENGINE_CRON']) {
-    // Prod environment, direct access
-    die('I am a cron job');
-} else {
+}
+elseif (!array_key_exists('X_APPENGINE_CRON', $_SERVER) || 'true' !== $_SERVER['X_APPENGINE_CRON'])
+{
+  // Prod environment, direct access
+  $token_get = $_GET['t'];
+  $token     = getenv('TOKEN');
+
+  if($token_get === $token)
+  {
+    $pages = $pegass->getVolunteers($UL_ID);
+  }
+  else
+  {
+    die('I am a cron job, not to be invoked directly');
+  }
+}
+else
+{
     // Prod environment, cron job
-    $pages = $pegass->getVolunteers('889'); // Paris 1/2
+    $pages = $pegass->getVolunteers($UL_ID);
 }
 
+echo "<pre>";
 // Filter out everyone's emails from pegass result
 $nivols = [];
 foreach ($pages as $page) {
@@ -34,10 +57,11 @@ foreach ($pages as $page) {
 }
 
 // Fetch all available volunteers in Firestore
-$db = new FirestoreClient();
-$ref = $db->collection('pegass');
-$store = [];
+$db       = new FirestoreClient();
+$ref      = $db->collection('pegass');
+$store    = [];
 $snapshot = $ref->documents();
+
 foreach ($snapshot as $doc => $entity) {
 //    /** @var DocumentSnapshot $entity */
 //    if (!$entity->offsetExists('nivol')) {
@@ -98,3 +122,4 @@ foreach (array_intersect(array_keys($nivols), array_keys($store)) as $nivol) {
     }
 }
 
+echo "</pre>";

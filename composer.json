@@ -2,6 +2,10 @@
   "require": {
     "fabpot/goutte": "^3.2",
     "google/cloud": "^0.123.0",
-    "symfony/var-dumper": "^5.0"
+    "symfony/var-dumper": "^5.0",
+    "ext-json": "*",
+    "grpc/grpc": "^v1.27.0",
+    "google/protobuf": "^v3.3.0",
+    "google/apiclient": "^2.0"
   }
 }

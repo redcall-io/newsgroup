@@ -1,8 +1,12 @@
-runtime: php72
+runtime: php73
 
 env_variables:
-  PEGASS_LOGIN: foo
-  PEGASS_PASSWORD: bar
+  PEGASS_LOGIN: "¤PEGASS_LOGIN¤"
+  PEGASS_PASSWORD: "¤PEGASS_PASSWORD¤"
+  TOKEN: "¤TOKEN_MANUAL_TRIGGER¤"
+  UL_ID: "¤UL_ID¤"
+  MAILING_LIST: "¤MAILING_LIST¤"
+  GOOGLE_APPLICATION_CREDENTIALS: "pegass-ggroup-sync.json"
 
 manual_scaling:
   instances: 1
@@ -11,3 +15,4 @@ resources:
   cpu: 1
   memory_gb: 0.5
   disk_size_gb: 10
+

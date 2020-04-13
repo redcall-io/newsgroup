@@ -3,3 +3,5 @@ notes.txt
 app.yaml
 service-account.json
 mock.json
+!/app.yaml
+/pegass-ggroup-sync.json
