@@ -20,3 +20,5 @@
 service-account.json
 mock.json
 notes.txt
+/.idea/
+/CRF-newsgroup.iml

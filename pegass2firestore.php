@@ -48,10 +48,12 @@ echo "<pre>";
 $nivols = [];
 foreach ($pages as $page) {
     foreach ($page['list'] as $volunteer) {
-        $nivol = new Volunteer();
-        $nivol->nivol = ltrim($volunteer['id'], '0');
-        $nivol->emails = $pegass->fetchEmails($volunteer['coordonnees']);
-        $nivol->enabled = $volunteer['actif'];
+        $nivol              = new Volunteer();
+        $nivol->nivol       = ltrim($volunteer['id'], '0');
+        $nivol->emails      = $pegass->fetchEmails($volunteer['coordonnees']);
+        $nivol->enabled     = $volunteer['actif'  ];
+        $nivol->first_name  = $volunteer['prenom' ];
+        $nivol->last_name   = $volunteer['nom'    ];
         $nivols[$nivol->nivol] = $nivol;
     }
 }
@@ -94,8 +96,12 @@ foreach ($new as $nivol) {
         'emails' => $volunteer->emails,
         'enabled' => $volunteer->enabled,
         'nivol' => $volunteer->nivol,
+        'first_name' => ucwords(strtolower($volunteer->first_name)),
+        'last_name'  => ucwords(strtolower($volunteer->last_name)),
         'subscribed' => true,
-        'valid_email_index' => 0,
+        'out_of_sync' => false,
+        'subscribed_email_index' => 0,
+
     ]);
 }
 

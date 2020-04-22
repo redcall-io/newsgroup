@@ -1,4 +1,20 @@
 {
+  "name": "rcq/redcrossquest",
+  "description": "French Red Cross yearly fundraising rest backend",
+  "keywords": ["google groups","firestore"],
+  "homepage": "https://github.com/redcall-io/newsgroup",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Thomas Manson",
+      "email": "cv@mansonthomas.com",
+      "homepage": "http://www.mansonthomas.com/"
+    },
+    {
+      "name": "Alain Tiemblo",
+      "email": "redcall@ulparis0102.eu"
+    }
+  ],
   "require": {
     "fabpot/goutte": "^3.2",
     "google/cloud": "^0.123.0",
@@ -7,5 +23,12 @@
     "grpc/grpc": "^v1.27.0",
     "google/protobuf": "^v3.3.0",
     "google/apiclient": "^2.0"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "platform": {
+      "php": "7.3"
+    }
   }
 }

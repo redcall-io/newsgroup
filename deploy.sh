@@ -12,6 +12,8 @@ sed -i '' -e "s/¤PEGASS_PASSWORD¤/${PEGASS_PASSWORD}/g"             app.yaml
 sed -i '' -e "s/¤TOKEN_MANUAL_TRIGGER¤/${TOKEN_MANUAL_TRIGGER}/g"   app.yaml
 sed -i '' -e "s/¤UL_ID¤/${UL_ID}/g"                                 app.yaml
 sed -i '' -e "s/¤MAILING_LIST¤/${MAILING_LIST}/g"                   app.yaml
+sed -i '' -e "s/¤EMAIL_TO_IMPERSONATE¤/${EMAIL_TO_IMPERSONATE}/g"   app.yaml
+sed -i '' -e "s/¤DO_NOT_DELETE¤/${DO_NOT_DELETE}/g"                 app.yaml
 
 #Private key for using API
 cp ~/.cred/pegass-ggroup-sync-*.json ./pegass-ggroup-sync.json

@@ -6,13 +6,15 @@ env_variables:
   TOKEN: "¤TOKEN_MANUAL_TRIGGER¤"
   UL_ID: "¤UL_ID¤"
   MAILING_LIST: "¤MAILING_LIST¤"
+  DO_NOT_DELETE: "¤DO_NOT_DELETE¤"
+  EMAIL_TO_IMPERSONATE: "¤EMAIL_TO_IMPERSONATE¤"
   GOOGLE_APPLICATION_CREDENTIALS: "pegass-ggroup-sync.json"
 
-manual_scaling:
-  instances: 1
+#manual_scaling:
+#  instances: 1
 
-resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
+#resources:
+#  cpu: 1
+#  memory_gb: 0.5
+#  disk_size_gb: 10
 
