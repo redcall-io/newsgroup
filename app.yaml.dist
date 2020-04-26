@@ -8,7 +8,8 @@ env_variables:
   MAILING_LIST: "¤MAILING_LIST¤"
   DO_NOT_DELETE: "¤DO_NOT_DELETE¤"
   EMAIL_TO_IMPERSONATE: "¤EMAIL_TO_IMPERSONATE¤"
-  GOOGLE_APPLICATION_CREDENTIALS: "pegass-ggroup-sync.json"
+  GOOGLE_APPLICATION_CREDENTIALS: "../pegass-ggroup-sync.json"
+  FIRESTORE_COLLECTION: "¤FIRESTORE_COLLECTION¤"
 
 #manual_scaling:
 #  instances: 1

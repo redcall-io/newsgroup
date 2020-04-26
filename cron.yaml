@@ -1,6 +1,6 @@
 cron:
   - description: "Pegass -> Firestore"
-    url: /pegass2firestore.php
+    url: /public/Pegass2Firestore.php
     schedule: every day 05:00
     timezone: Europe/Paris
 

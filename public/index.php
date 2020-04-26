@@ -6,11 +6,12 @@ if(array_key_exists('action', $_GET))
 
   if($action == 'PEGASS')
   {
-    include "pegass2firestore.php";
+    include __DIR__ . "/Pegass2Firestore.php";
   }
   else if ($action == 'GGROUP')
   {
-    include "firestore2ggroup.php";
+    echo "GGroup";
+    include __DIR__ . "/Firestore2GoogleGroup.php";
   }
 }
 else
